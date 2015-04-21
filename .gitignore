@@ -1,0 +1,11 @@
+# Created by .ignore support plugin (hsz.mobi)
+VendingMachineKata.iml
+*.xml
+/out/production
+/out/test
+/.idea
+/lib/spring-5.1.jar
+
+.idea/vcs.xml
+
+.idea/workspace.xml
