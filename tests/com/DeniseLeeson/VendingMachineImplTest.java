@@ -67,7 +67,7 @@ public class VendingMachineImplTest {
         vendingMachine.acceptMoney(.25);
         vendingMachine.returnMoney();
         String actualResult = MessageFormatHelper.formatResult(messageCollector) ;
-        assertEquals(MessageFormatHelper.formatResult(allowableMoney) + Constants.SPACER + Constants.COIN_RETURN, actualResult);
+        assertEquals(Constants.COIN_RETURN + Constants.NEWLINE + MessageFormatHelper.formatResult(allowableMoney), actualResult);
 
     }
 

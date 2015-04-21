@@ -66,13 +66,13 @@ public class VendingMachineControllerTest {
                 .append(Constants.SPACER)
                 .append(Constants.QUARTER)
                 .append(Constants.SPACER)
+                .append(Constants.COIN_RETURN)
+                .append(Constants.NEWLINE)
                 .append(Constants.DOLLAR)
                 .append(Constants.SPACER)
                 .append(Constants.NICKEL)
                 .append(Constants.SPACER)
-                .append(Constants.QUARTER)
-                .append(Constants.SPACER)
-                .append(Constants.COIN_RETURN);
+                .append(Constants.QUARTER);
 
 
         assertEquals(sb.toString(), outContent.toString().trim());
