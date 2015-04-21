@@ -14,18 +14,14 @@ public class Main {
         double money;
         try {
             for (String arg : args) {
-                money = 0.00;
                 if (arg.equals("NICKEL")) {
-                    money = .05;
+                    vendingMachineController.acceptMoney(Constants.NICKEL_AMOUNT);
                 } else if (arg.equals("DIME")) {
-                    money = .10;
+                    vendingMachineController.acceptMoney(Constants.DIME_AMOUNT);
                 } else if (arg.equals("QUARTER")) {
-                    money = .25;
+                    vendingMachineController.acceptMoney(Constants.QUARTER_AMOUNT);
                 } else if (arg.equals("DOLLAR")) {
-                    money = 1.00;
-                }
-                if (money > 0) {
-                    vendingMachineController.acceptMoney(money);
+                    vendingMachineController.acceptMoney(Constants.DOLLAR_AMOUNT);
                 } else if (arg.equals("COIN_RETURN")) {
                     vendingMachineController.returnMoney();
                 } else if (arg.equals("GET_A") || arg.equals("GET_B") || arg.equals("GET_C") || arg.substring(0,3).toUpperCase().equals("GET")) {

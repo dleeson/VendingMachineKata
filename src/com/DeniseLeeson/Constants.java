@@ -8,7 +8,7 @@ public class Constants {
     public static final Double DOLLAR_AMOUNT = 1.00;
     public static final Double QUARTER_AMOUNT = .25;
     public static final Double DIME_AMOUNT = .10;
-    public static final Double Nickel_AMOUNT = .05;
+    public static final Double NICKEL_AMOUNT = .05;
     public static final String SPACER = ", ";
     public static final String NEWLINE = "\n";
     public static final String GET_A = "GET-A";
