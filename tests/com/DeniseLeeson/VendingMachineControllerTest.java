@@ -261,10 +261,11 @@ public class VendingMachineControllerTest {
 
     @Test
     public void testGetItems() {
-        String[] args = {"GET_F;2.50;6,GET_D;1.50;3", "GET_F"};
-        for (String arg : args) {
-            getItems(arg);
-        }
+        String arg = "F;2.50;6,GET_D;1.50;3";
+        Double expectedCost = 1.50;
+        List<Item> items = getItems(arg);
+        assertEquals("F", items.get(0).getSelector());
+        assertEquals(expectedCost, items.get(1).getCost());
     }
 
     private static List<Item> getItems(String arg) {

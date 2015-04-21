@@ -16,6 +16,6 @@ Options:
 
     adding items:  you can add a collection of items as follows
 
-    selector;cost;count,selector;cost;count example "GET_F;2.50;6,GET_D;1.50;3"
+    selector;cost;count,selector;cost;count example "F;2.50;6,D;1.50;3"
 
     if the item already exists, the item is updated
