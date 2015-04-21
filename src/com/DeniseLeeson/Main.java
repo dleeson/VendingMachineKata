@@ -23,10 +23,10 @@ public class Main {
                     vendingMachineController.acceptMoney(Constants.DOLLAR_AMOUNT);
                 } else if (arg.equals("COIN_RETURN")) {
                     vendingMachineController.returnMoney();
+                } else if (arg.toLowerCase().contains(";")) {
+                    vendingMachineController.setInventory(getItems(arg));
                 } else if (arg.equals("GET_A") || arg.equals("GET_B") || arg.equals("GET_C") || arg.substring(0,3).toUpperCase().equals("GET")) {
                     vendingMachineController.selectItem(arg);
-                } else if (arg.toLowerCase().contains(",")) {
-                    vendingMachineController.setInventory(getItems(arg));
                 } else {
                     System.out.println("Invalid action.");
                 }
@@ -39,11 +39,11 @@ public class Main {
 
     private static List<Item> getItems(String arg) {
         List<Item> items = new ArrayList<Item>();
-        List<String> stringArgs = Arrays.asList(arg.split("\\s*,\\s*"));
+        List<String> stringArgs = Arrays.asList(arg.split(","));
         List<String> stringItemElements;
         Item item;
         for (String strArg : stringArgs) {
-            stringItemElements = Arrays.asList(strArg.split("\\s*|\\s*"));
+            stringItemElements = Arrays.asList(strArg.split(";"));
             item = new ItemImpl(stringItemElements.get(0),Double.parseDouble(stringItemElements.get(1)), Integer.parseInt(stringItemElements.get(2)));
             items.add(item);
         }

@@ -9,6 +9,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -256,4 +257,27 @@ public class VendingMachineControllerTest {
         vendingMachineController.returnMoney();
         assertEquals("DOLLAR, COIN-RETURN\nDOLLAR",outContent.toString().trim());
     }
+
+
+    @Test
+    public void testGetItems() {
+        String[] args = {"GET_F;2.50;6,GET_D;1.50;3", "GET_F"};
+        for (String arg : args) {
+            getItems(arg);
+        }
+    }
+
+    private static List<Item> getItems(String arg) {
+        List<Item> items = new ArrayList<Item>();
+        List<String> stringArgs = Arrays.asList(arg.split(","));
+        List<String> stringItemElements;
+        Item item;
+        for (String strArg : stringArgs) {
+            stringItemElements = Arrays.asList(strArg.split(";"));
+            item = new ItemImpl(stringItemElements.get(0),Double.parseDouble(stringItemElements.get(1)), Integer.parseInt(stringItemElements.get(2)));
+            items.add(item);
+        }
+        return items;
+    }
+
 }

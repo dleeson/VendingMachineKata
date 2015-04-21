@@ -1,9 +1,9 @@
 To run: java -jar directory-to-jar_file option
-java -jar out/artifacts/VendingMachineKata_jar/VendingMachineKata.jar "GET_A"
+example: java -jar out/artifacts/VendingMachineKata_jar/VendingMachineKata.jar DOLLAR QUARTER COIN_RETURN
 
 
 
-Options: (only one to be entered at any given time)
+Options:
     "NICKEL" => acceptMoney() returns ".05"
     "DIME" => acceptMoney() returns ".10"
     "QUARTER" => acceptMoney() returns ".25"
@@ -13,3 +13,9 @@ Options: (only one to be entered at any given time)
     "GET_A" => selectItem()
     "GET_B" => selectItem()
     "GET_C" => selectItem()
+
+    adding items:  you can add a collection of items as follows
+
+    selector;cost;count,selector;cost;count example "GET_F;2.50;6,GET_D;1.50;3"
+
+    if the item already exists, the item is updated
