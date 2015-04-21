@@ -169,7 +169,7 @@ public class VendingMachineControllerTest {
             .append(Constants.SPACER)
             .append(Constants.GET_A)
             .append(Constants.NEWLINE)
-            .append(String.format(Constants.NOT_ENOUGH_MONEY,expectedAmountStillNeeded));
+            .append(String.format(Constants.NOT_ENOUGH_MONEY, expectedAmountStillNeeded));
         assertEquals(sb.toString(), outContent.toString().trim());
     }
 
@@ -248,5 +248,12 @@ public class VendingMachineControllerTest {
                 .append(Constants.NEWLINE)
                 .append(Constants.ITEM_DOES_NOT_EXIST);
         assertEquals(sb.toString(), outContent.toString().trim());
+    }
+
+    @Test
+    public void moneyActuallyGetsSaved() {
+        vendingMachineController.acceptMoney(Constants.DOLLAR_AMOUNT);
+        vendingMachineController.returnMoney();
+        assertEquals("DOLLAR, COIN-RETURN\nDOLLAR",outContent.toString().trim());
     }
 }

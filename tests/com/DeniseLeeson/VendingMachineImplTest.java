@@ -88,4 +88,6 @@ public class VendingMachineImplTest {
         vendingMachine.selectItem(Constants.GET_C);
         assertEquals(expectedItemCount, vendingMachine.getItem(Constants.GET_C).getCount());
     }
+
+
 }

@@ -11,7 +11,6 @@ public class Main {
 
     private static void run(String[] args) {
         VendingMachineController vendingMachineController = new VendingMachineController();
-        double money;
         try {
             for (String arg : args) {
                 if (arg.equals("NICKEL")) {

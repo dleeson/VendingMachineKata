@@ -38,10 +38,11 @@ public class VendingMachineImpl extends VendingMachine {
         if (moneyAccepted.size() == 0) {
             return Constants.NO_COINS_TO_RETURN;
         }
-        String message = MessageFormatHelper.formatResult(MapHelper.getKeys(moneyAccepted));
-        message += Constants.SPACER + Constants.COIN_RETURN;
+        String message = Constants.COIN_RETURN + Constants.NEWLINE;
         getMessageCollector().add(message);
-        return message;
+
+        getMessageCollector().add(MessageFormatHelper.formatResult(MapHelper.getKeys(moneyAccepted)));
+        return MessageFormatHelper.formatResult(getMessageCollector().getMessages());
     }
 
     @Override
