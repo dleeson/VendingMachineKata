@@ -11,6 +11,7 @@ public class MoneyImpl extends Money {
         setDescription(description);
         setValue(value);
         addTotal(value);
+        setCount(0);
     }
 
     public Double getValue() {

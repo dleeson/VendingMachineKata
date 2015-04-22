@@ -29,7 +29,6 @@ public class VendingMachineImpl extends VendingMachine {
             storeAcceptedMoney(money);
             return MessageFormatHelper.formatResult(money, moneyMap);
         }
-
         return String.format(Constants.INVALID_MONEY, money);
     }
 
@@ -78,7 +77,7 @@ public class VendingMachineImpl extends VendingMachine {
         }
 
         item.setCount(item.getCount() - 1);
-        if (moneyLeft == Constants.ZERO_AMOUNT) {
+        if (moneyLeft == Double.parseDouble("0.0")) {
             getMessageCollector().add(item.getSelector());
             return MessageFormatHelper.formatResult(getMessageCollector().getMessages());
         }
@@ -86,10 +85,46 @@ public class VendingMachineImpl extends VendingMachine {
 
         Change change = new Change(moneyLeft, 0, 0, 0, 0);
         change.calculateChange();
-        MessageFormatHelper.formatReturnChange(change, getMessageCollector(), item.getSelector());
 
+        String adjustmentMessage = adjustMoneyBag(change);
+        if (adjustmentMessage.length() > 0) {
+            getMessageCollector().add(adjustmentMessage);
+            return MessageFormatHelper.formatResult(getMessageCollector().getMessages());
+        }
+
+        MessageFormatHelper.formatReturnChange(change, getMessageCollector(), item.getSelector());
         return MessageFormatHelper.formatResult(getMessageCollector().getMessages());
 
+    }
+
+    private String adjustMoneyBag(Change change) {
+        String message = "";
+        MoneyBag<Money> moneyBag = getMoneyBag();
+
+        int nickelCount = moneyBag.getMoney(Constants.NICKEL).getCount();
+        int dimeCount = moneyBag.getMoney(Constants.DIME).getCount();
+
+        int quarterCount = moneyBag.getMoney(Constants.QUARTER).getCount();
+
+        if (change.getNickelCount() > nickelCount ||
+            change.getDimeCount() > dimeCount ||
+            change.getQuarterCount() > quarterCount) {
+            return Constants.NOT_ENOUGH_CHANGE;
+        }
+
+
+        if (change.getNickelCount() > 0) {
+            moneyBag.getMoney(Constants.NICKEL).setCount(nickelCount - change.getNickelCount());
+        }
+
+        if (change.getDimeCount() > 0) {
+            moneyBag.getMoney(Constants.DIME).setCount(dimeCount - change.getDimeCount());
+        }
+
+        if (change.getQuarterCount() > 0) {
+            moneyBag.getMoney(Constants.QUARTER).setCount(quarterCount - change.getQuarterCount());
+        }
+        return message;
     }
 
     @Override
@@ -119,6 +154,7 @@ public class VendingMachineImpl extends VendingMachine {
 
     private void storeAcceptedMoney(Double acceptedMoney) {
         Money money = new MoneyImpl(MapHelper.getKeyFromValue(acceptedMoney,moneyMap),acceptedMoney);
+        money.setCount(1);
         moneyAccepted.add(money);
     }
 

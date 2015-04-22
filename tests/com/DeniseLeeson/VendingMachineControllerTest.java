@@ -23,6 +23,7 @@ public class VendingMachineControllerTest {
     @Before
     public void setUp() throws Exception {
         vendingMachineController = new VendingMachineController();
+        vendingMachineController.getVendingMachine().setMoneyBag(createMoneyBag());
         System.setOut(new PrintStream(outContent));
     }
 
@@ -81,7 +82,6 @@ public class VendingMachineControllerTest {
 
     @Test
     public void displaysResultOfSelectAnItem() {
-        vendingMachineController.getVendingMachine();
         vendingMachineController.acceptMoney(1.00);
         vendingMachineController.acceptMoney(.25);
         vendingMachineController.acceptMoney(.25);
@@ -297,7 +297,20 @@ public class VendingMachineControllerTest {
         }
         return items;
     }
+    private MoneyBag<Money> createMoneyBag() {
+        MoneyBag<Money> moneyBag = new MoneyBagImpl<Money>();
+        Money money = new MoneyImpl(Constants.NICKEL,Constants.NICKEL_AMOUNT);
+        money.setCount(50);
+        moneyBag.add(money);
+        money = new MoneyImpl(Constants.QUARTER,Constants.QUARTER_AMOUNT);
+        money.setCount(50);
+        moneyBag.add(money);
+        money = new MoneyImpl(Constants.DIME,Constants.DIME_AMOUNT);
+        money.setCount(50);
+        moneyBag.add(money);
 
+        return moneyBag;
+    }
     private static MoneyBag getMoneyBag(String arg) {
         MoneyBag moneyBag = new MoneyBagImpl();
         List<String> stringArgs = Arrays.asList(arg.split(","));

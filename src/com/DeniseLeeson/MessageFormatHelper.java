@@ -9,12 +9,14 @@ public class MessageFormatHelper {
     public static String formatResult(List<String> messages) {
         StringBuilder sb = new StringBuilder();
         for (String message : messages) {
-            sb.append(message);
-            if (!message.substring(message.length() -1, message.length()).equals(Constants.NEWLINE)) {
-                sb.append(Constants.SPACER);
+            if (message.trim().length() > 0) {
+                sb.append(message);
+                if (!message.substring(message.length() -1, message.length()).equals(Constants.NEWLINE)) {
+                    sb.append(Constants.SPACER);
+                }
             }
         }
-        if (sb.toString().trim().length() >= 2) {
+        if (sb.toString().trim().endsWith(",")) {
             sb.delete(sb.length() - 2, sb.length());
         }
         return sb.toString();
@@ -52,8 +54,7 @@ public class MessageFormatHelper {
             sb.append(Constants.NICKEL)
                     .append(Constants.SPACER);
         }
-
-        if (sb.toString().trim().length() >= 2) {
+        if (sb.toString().trim().endsWith(",")) {
             sb.delete(sb.length() - 2, sb.length());
         }
 

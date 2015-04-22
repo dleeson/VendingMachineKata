@@ -17,9 +17,10 @@ public class MessageCollector extends ArrayList {
 
     public List<String> getMessages() {
         List<String> messages = new ArrayList<String>();
-        for(int indx = 0; indx < size(); indx++) {
+        for (int indx = 0; indx < size(); indx++) {
             messages.add(String.valueOf(get(indx)));
         }
+
         return messages;
     }
 

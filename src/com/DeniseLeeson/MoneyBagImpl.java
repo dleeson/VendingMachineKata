@@ -18,7 +18,9 @@ public class MoneyBagImpl<Money> extends MoneyBag<Money> {
 
     @Override
     public Money getMoney(String description) {
+
         Money money = null;
+        if (this.size() == 0) { return money; }
         for (int indx=0; indx < this.size(); indx ++){
 
             if (((MoneyImpl)this.get(indx)).getDescription().equals(description)) {

@@ -23,6 +23,7 @@ public abstract class VendingMachine {
         createItems();
         moneyAccepted = new ArrayList<Money>();
         moneyBag = new MoneyBagImpl<Money>();
+        fillMoneyBag();
     }
 
     public List<Item> getItems() {
@@ -52,6 +53,12 @@ public abstract class VendingMachine {
         items.add(new ItemImpl("A",.65, 10));
         items.add(new ItemImpl("B",1.00, 9));
         items.add(new ItemImpl("C",1.50, 8));
+    }
+
+    private void fillMoneyBag() {
+        getMoneyBag().add(new MoneyImpl(Constants.QUARTER, Constants.QUARTER_AMOUNT));
+        getMoneyBag().add(new MoneyImpl(Constants.DIME, Constants.DIME_AMOUNT));
+        getMoneyBag().add(new MoneyImpl(Constants.NICKEL, Constants.NICKEL_AMOUNT));
     }
 
     public abstract String selectItem(String selection);

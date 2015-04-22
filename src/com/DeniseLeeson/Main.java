@@ -35,7 +35,7 @@ public class Main {
                 } else if (arg.equals("GET_A") || arg.equals("GET_B") || arg.equals("GET_C") || arg.substring(0,3).toUpperCase().equals("GET")) {
                     vendingMachineController.selectItem(arg);
                 } else {
-                    System.out.println("Invalid action.");
+                    System.out.println(Constants.INVALID_ACTION);
                 }
 
             }

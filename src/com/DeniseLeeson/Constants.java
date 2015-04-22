@@ -5,7 +5,7 @@ public class Constants {
     public static final String DIME = "DIME";
     public static final String QUARTER = "QUARTER";
     public static final String DOLLAR = "DOLLAR";
-    public static final Double ZERO_AMOUNT = 0.00;
+    public static final Double ZERO_AMOUNT = 0.0;
     public static final Double DOLLAR_AMOUNT = 1.00;
     public static final Double QUARTER_AMOUNT = .25;
     public static final Double DIME_AMOUNT = .10;
@@ -21,4 +21,7 @@ public class Constants {
     public static final String NOT_ENOUGH_MONEY = "Not enough money to purchase item. Please insert an additional %.2f.";
     public static final String NO_COINS_TO_RETURN = "There was no money inserted to return.";
     public static final String ITEM_DOES_NOT_EXIST = "Item does not exist.";
+    public static final String NOT_ENOUGH_CHANGE = "Not enough change.";
+    public static final String INVALID_ACTION = "Invalid action.";
 }
+

@@ -9,7 +9,9 @@ public class MoneyImplTest {
     private Money money;
     @Before
     public void setup() {
+
         money = new MoneyImpl(Constants.DOLLAR,Constants.DOLLAR_AMOUNT);
+        money.setCount(1);
     }
 
     @Test
