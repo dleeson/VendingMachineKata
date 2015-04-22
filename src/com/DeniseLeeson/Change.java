@@ -16,7 +16,7 @@ public class Change {
     }
 
     public void calculateChange(){
-        Double remainder = 0.00;
+        Double remainder;
         if (moneyLeft > .99) {
             remainder =  (moneyLeft / Constants.DOLLAR_AMOUNT);
             dollarCount = remainder.intValue();
@@ -24,19 +24,19 @@ public class Change {
 
         }
 
-        if (moneyLeft > .25){
+        if (moneyLeft > Constants.QUARTER_AMOUNT){
             remainder = moneyLeft / Constants.QUARTER_AMOUNT;
             quarterCount = remainder.intValue();
             moneyLeft -= quarterCount * Constants.QUARTER_AMOUNT;
         }
 
-        if (moneyLeft > .10) {
+        if (moneyLeft > Constants.DIME_AMOUNT) {
             remainder = moneyLeft / Constants.DIME_AMOUNT;
             dimeCount = remainder.intValue();
             moneyLeft -= roundDouble(dimeCount * Constants.DIME_AMOUNT);
         }
 
-        if (roundDouble(moneyLeft) > 0.00) {
+        if (roundDouble(moneyLeft) > Constants.ZERO_AMOUNT) {
             nickelCount = 1;
         }
     }

@@ -60,7 +60,7 @@ public class VendingMachineImpl extends VendingMachine {
             return MessageFormatHelper.formatResult(getMessageCollector().getMessages());
         }
 
-        if (totalAcceptedMoney == 0.00) {
+        if (totalAcceptedMoney == Constants.ZERO_AMOUNT) {
             return item.getCost().toString();
         }
 
@@ -70,7 +70,7 @@ public class VendingMachineImpl extends VendingMachine {
         }
 
         Double moneyLeft = totalAcceptedMoney - item.getCost();
-        if (moneyLeft < 0.00) {
+        if (moneyLeft < Constants.ZERO_AMOUNT) {
             moneyLeft *= -1.0;
             String notEnough = String.format(Constants.NOT_ENOUGH_MONEY, moneyLeft);
             getMessageCollector().add(notEnough);
@@ -78,7 +78,7 @@ public class VendingMachineImpl extends VendingMachine {
         }
 
         item.setCount(item.getCount() - 1);
-        if (moneyLeft == 0.00) {
+        if (moneyLeft == Constants.ZERO_AMOUNT) {
             getMessageCollector().add(item.getSelector());
             return MessageFormatHelper.formatResult(getMessageCollector().getMessages());
         }
@@ -104,6 +104,7 @@ public class VendingMachineImpl extends VendingMachine {
             }
         }
     }
+
 
     private void updateItem(Item sourceItem, Item targetItem){
         targetItem.setCount(sourceItem.getCount());

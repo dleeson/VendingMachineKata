@@ -59,4 +59,11 @@ public class MessageFormatHelper {
 
         messageCollector.add(sb.toString());
     }
+
+    public static String formatMoneyBag(MoneyBag<Money> moneyBag, MessageCollector messageCollector) {
+        for (Money money : moneyBag) {
+            messageCollector.add(money.toString() + Constants.NEWLINE);
+        }
+        return MessageFormatHelper.formatResult(messageCollector.getMessages());
+    }
 }

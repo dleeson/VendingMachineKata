@@ -11,10 +11,10 @@ import static org.junit.Assert.assertEquals;
 
 public class MessageFormatHelperTest {
     public static final Map<String, Double> map = new HashMap<String, Double>(){{
-        put(Constants.NICKEL, .05);
-        put(Constants.DIME, .10);
-        put(Constants.QUARTER, .25);
-        put(Constants.DOLLAR, 1.00);
+        put(Constants.NICKEL, Constants.NICKEL_AMOUNT);
+        put(Constants.DIME, Constants.DIME_AMOUNT);
+        put(Constants.QUARTER, Constants.QUARTER_AMOUNT);
+        put(Constants.DOLLAR, Constants.DOLLAR_AMOUNT);
     }};
 
     @Test
@@ -36,7 +36,7 @@ public class MessageFormatHelperTest {
 
     @Test
     public void resultsAreFormattedForDouble() {
-        assertEquals(Constants.QUARTER + Constants.SPACER,MessageFormatHelper.formatResult(.25, map));
+        assertEquals(Constants.QUARTER + Constants.SPACER,MessageFormatHelper.formatResult(Constants.QUARTER_AMOUNT, map));
     }
 
     @Test

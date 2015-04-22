@@ -230,12 +230,6 @@ public class VendingMachineControllerTest {
     }
 
     @Test
-    public void canSetChange() {
-
-
-    }
-
-    @Test
     public void returnMoneyWithNoItemsSelectedOrMoneyInserted() {
         vendingMachineController.returnMoney();
         assertEquals(Constants.NO_COINS_TO_RETURN,outContent.toString().trim());
@@ -268,6 +262,29 @@ public class VendingMachineControllerTest {
         assertEquals(expectedCost, items.get(1).getCost());
     }
 
+    @Test
+    public void testGetMoney() {
+        Money expectedMoney = new MoneyImpl(Constants.QUARTER,Constants.QUARTER_AMOUNT);
+        expectedMoney.setCount(5);
+        Money actualMoney = getMoney(expectedMoney.getDescription(),expectedMoney.getValue(), expectedMoney.getCount());
+        assertEquals(expectedMoney.getCount(),actualMoney.getCount());
+        assertEquals(expectedMoney.getDescription(), actualMoney.getDescription());
+        assertEquals(expectedMoney.getValue(), actualMoney.getValue());
+    }
+
+    @Test
+    public void testGetMoneyBag() {
+        String arg = "QUARTER;2,DIME;3";
+        MoneyBag<Money> actualMoneyBag = getMoneyBag(arg);
+        assertEquals(Constants.QUARTER, actualMoneyBag.get(0).getDescription());
+        assertEquals(Constants.QUARTER_AMOUNT, actualMoneyBag.get(0).getValue());
+        assertEquals(2,actualMoneyBag.get(0).getCount());
+        assertEquals(Constants.DIME, actualMoneyBag.get(1).getDescription());
+        assertEquals(Constants.DIME_AMOUNT, actualMoneyBag.get(1).getValue());
+        assertEquals(3,actualMoneyBag.get(1).getCount());
+
+    }
+
     private static List<Item> getItems(String arg) {
         List<Item> items = new ArrayList<Item>();
         List<String> stringArgs = Arrays.asList(arg.split(","));
@@ -279,6 +296,56 @@ public class VendingMachineControllerTest {
             items.add(item);
         }
         return items;
+    }
+
+    private static MoneyBag getMoneyBag(String arg) {
+        MoneyBag moneyBag = new MoneyBagImpl();
+        List<String> stringArgs = Arrays.asList(arg.split(","));
+        List<String> stringItemElements;
+        int nickelCount = 0;
+        int dimeCount = 0;
+        int quarterCount = 0;
+
+        try {
+            for (String strArg : stringArgs) {
+
+                stringItemElements = Arrays.asList(strArg.split(";"));
+                if (stringItemElements.get(0).equals(Constants.QUARTER)) {
+                    quarterCount += Integer.parseInt(stringItemElements.get(1).toString());
+                } else if (stringItemElements.get(0).equals(Constants.DIME)) {
+                    dimeCount += Integer.parseInt(stringItemElements.get(1).toString());
+                } else if (stringItemElements.get(0).equals(Constants.NICKEL)) {
+                    nickelCount += Integer.parseInt(stringItemElements.get(1).toString());
+                } else {
+                    throw new Exception("Invalid entry.");
+                }
+            }
+            if (quarterCount > 0) {
+                moneyBag.add(
+                        getMoney(Constants.QUARTER, Constants.QUARTER_AMOUNT, quarterCount)
+                );
+            }
+            if (dimeCount > 0) {
+                moneyBag.add(
+                        getMoney(Constants.DIME, Constants.DIME_AMOUNT, dimeCount)
+                );
+            }
+            if (nickelCount > 0) {
+                moneyBag.add(
+                        getMoney(Constants.NICKEL, Constants.NICKEL_AMOUNT, nickelCount)
+                );
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        return moneyBag;
+    }
+
+    private static Money getMoney(String denomination, Double cost, int count) {
+        Money money = new MoneyImpl(denomination,cost);
+        money.setCount(count);
+        return money;
     }
 
 }

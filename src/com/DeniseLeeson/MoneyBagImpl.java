@@ -9,7 +9,7 @@ public class MoneyBagImpl<Money> extends MoneyBag<Money> {
 
     @Override
     public Double getTotal() {
-        Double totalMoney = 0.00;
+        Double totalMoney = Constants.ZERO_AMOUNT;
         for (Money money : this) {
             totalMoney += ((MoneyImpl)money).getTotal();
         }
@@ -27,4 +27,5 @@ public class MoneyBagImpl<Money> extends MoneyBag<Money> {
         }
         return money;
     }
+
 }

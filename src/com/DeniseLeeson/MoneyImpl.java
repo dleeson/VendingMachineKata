@@ -3,7 +3,8 @@ package com.DeniseLeeson;
 public class MoneyImpl extends Money {
     private Double value;
     private String description;
-    private Double total = 0.00;
+    private Double total = Constants.ZERO_AMOUNT;
+    private int count;
 
 
     public MoneyImpl(String description, Double value) {
@@ -35,4 +36,33 @@ public class MoneyImpl extends Money {
     public void addTotal(Double value) { setTotal(total += value);}
 
     public void subtractTotal(Double value) {setTotal(total -= value); }
+
+    @Override
+    public void setCount(int count) {
+        this.count = count;
+        setTotal(count * getValue());
+    }
+
+    @Override
+    public int getCount() {
+        return this.count;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb =  new StringBuilder();
+        sb.append("Description: ")
+                .append(getDescription())
+                .append(Constants.SPACER)
+                .append("Value: ")
+                .append(getValue().toString())
+                .append(Constants.SPACER)
+                .append("Count: ")
+                .append(getCount())
+                .append(Constants.SPACER)
+                .append("Total: ")
+                .append(getTotal().toString());
+
+        return sb.toString();
+    }
 }

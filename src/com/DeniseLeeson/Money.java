@@ -17,4 +17,8 @@ public abstract class Money {
     public abstract void addTotal(Double value);
 
     public abstract void subtractTotal(Double value);
+
+    public abstract void setCount(int count);
+
+    public abstract int getCount();
 }

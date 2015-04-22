@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Calculator {
     public static Double addAmounts(List<Double> amounts) {
-        Double total = 0.0;
+        Double total = Constants.ZERO_AMOUNT;
         for (Double amount : amounts) {
             total += amount;
         }

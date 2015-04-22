@@ -5,6 +5,7 @@ public class Constants {
     public static final String DIME = "DIME";
     public static final String QUARTER = "QUARTER";
     public static final String DOLLAR = "DOLLAR";
+    public static final Double ZERO_AMOUNT = 0.00;
     public static final Double DOLLAR_AMOUNT = 1.00;
     public static final Double QUARTER_AMOUNT = .25;
     public static final Double DIME_AMOUNT = .10;

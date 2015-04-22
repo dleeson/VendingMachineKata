@@ -10,5 +10,4 @@ public abstract class MoneyBag<Money> extends ArrayList<Money> {
 
     public abstract Money getMoney(String description);
 
-
 }

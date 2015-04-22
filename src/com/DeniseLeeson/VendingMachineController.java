@@ -28,4 +28,8 @@ public class VendingMachineController {
     }
 
     public void setInventory(List<Item> items) {vendingMachine.setInventory(items);}
+
+    public void setMoneyBag(MoneyBag moneyBag) {
+        vendingMachine.setMoneyBag(moneyBag);
+    }
 }

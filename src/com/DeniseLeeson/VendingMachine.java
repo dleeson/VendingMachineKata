@@ -10,10 +10,10 @@ public abstract class VendingMachine {
 
     public List<Money> moneyAccepted;
     public static final Map<String, Double> moneyMap = new HashMap<String, Double>(){{
-        put(Constants.NICKEL, .05);
-        put(Constants.DIME, .10);
-        put(Constants.QUARTER, .25);
-        put(Constants.DOLLAR, 1.00);
+        put(Constants.NICKEL, Constants.NICKEL_AMOUNT);
+        put(Constants.DIME, Constants.DIME_AMOUNT);
+        put(Constants.QUARTER, Constants.QUARTER_AMOUNT);
+        put(Constants.DOLLAR, Constants.DOLLAR_AMOUNT);
     }};
 
     public static final Hashtable<String, Double> validMoney= new Hashtable<String, Double>(moneyMap);
@@ -22,7 +22,7 @@ public abstract class VendingMachine {
         setMessageCollector(messageCollector);
         createItems();
         moneyAccepted = new ArrayList<Money>();
-        moneyBag = new MoneyBagImpl();
+        moneyBag = new MoneyBagImpl<Money>();
     }
 
     public List<Item> getItems() {
@@ -57,4 +57,22 @@ public abstract class VendingMachine {
     public abstract String selectItem(String selection);
 
     public abstract void setInventory(List<Item> items);
+
+    public MoneyBag getMoneyBag() {
+        return moneyBag;
+    }
+
+    public void setMoneyBag(MoneyBag<Money> moneyBag) {
+        MoneyBag<Money> currentMoneyBag = getMoneyBag();
+        Money currentMoney;
+        for (Money money : moneyBag) {
+          currentMoney =  currentMoneyBag.getMoney(money.getDescription());
+          if (currentMoney == null) {
+              currentMoneyBag.add(money);
+          } else {
+              currentMoney.setCount(currentMoney.getCount() + money.getCount());
+          }
+        }
+        this.moneyBag = currentMoneyBag;
+    }
 }

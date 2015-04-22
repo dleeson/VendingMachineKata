@@ -19,3 +19,9 @@ Options:
     selector;cost;count,selector;cost;count example "F;2.50;6,D;1.50;3"
 
     if the item already exists, the item is updated
+
+
+    setting change: you can set the amount of quarters, nickels, and dimes
+
+    setting the change:  denomination;count,denomination,count
+    example:  QUARTER;20,NICKEL;50,DIME;45

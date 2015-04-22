@@ -13,16 +13,16 @@ import static org.junit.Assert.assertTrue;
 public class MapHelperTest {
 
     private Map map = new HashMap<String, Double>() {{
-        put(Constants.NICKEL, .05);
-        put(Constants.DIME, .10);
-        put(Constants.QUARTER, .25);
-        put(Constants.DOLLAR, 1.00);
+        put(Constants.NICKEL, Constants.NICKEL_AMOUNT);
+        put(Constants.DIME, Constants.DIME_AMOUNT);
+        put(Constants.QUARTER, Constants.QUARTER_AMOUNT);
+        put(Constants.DOLLAR, Constants.DOLLAR_AMOUNT);
     }};
 
 
     @Test
     public void getKeyFromValueReturnsKey() {
-        assertEquals(Constants.DIME, MapHelper.getKeyFromValue(.10, map));
+        assertEquals(Constants.DIME, MapHelper.getKeyFromValue(Constants.DIME_AMOUNT, map));
     }
 
     @Test
